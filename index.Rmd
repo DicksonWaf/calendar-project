@@ -1,0 +1,62 @@
+---
+output: md_document
+always_allow_html: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r, eval=FALSE, include=FALSE}
+# you'll need to delete the eval=FALSE for this code chunk to execute
+# but keep the include = FALSE so that it does not show up in the knit file (on the webpage)
+library(tidyverse)
+library(lubridate)
+library(ical)
+my_calendar <- ical_parse_df(file = "INSERT_PATH_HERE/your_user_name@amherst.edu.ics") %>%
+  mutate(start_datetime = with_tz(start, tzone = "America/New_York")
+    , end_datetime = with_tz(end, tzone = "America/New_York")
+    , length_sec = end_datetime - start_datetime
+    , length_min = length_sec/60
+    , length_hrs = length_min/60
+    , date = floor_date(start_datetime, unit = "day"))
+```
+
+# You can include section headers like this
+## Or section subheaders like this
+### How do I spend my time?
+
+Motivation + primary questions of interest
+
+blah blah blah
+
+I can include an image (not created in R) like this:
+
+![cute puppy](./img/cute_puppy.png)
+
+Create a "img" folder within your calendar-project repo and store the image files there.
+
+# Data collection
+
+I collected data by . . . 
+
+I can write a bulleted list like this:
+
+- here's the first thing I want to say
+- and I also want to say this
+- lastly, this
+
+And a numbered list like this:
+
+1. First thing
+2. Second thing
+3. Third thing
+
+# Results
+
+And here are my results . . .
+
+```{r}
+# intersperse relevant figures and text
+```
