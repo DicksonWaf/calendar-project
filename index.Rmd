@@ -101,9 +101,10 @@ cal6[is.na(cal6)]<-0
 view(cal6)
 cal7<- cal6%>%gather(key = "date", value="dailytime",-summary)
 
-plot <-ggplot(cal7, aes(x= summary, y= dailytime))+
+plot <-ggplot(cal7, aes(x= summary, y= dailytime, fill = summary))+
   geom_bar(stat='identity') 
 anim = plot + transition_states(date, transition_length = 4, state_length = 1)+
+      theme(legend.position="none")+
   labs(x= "Activity", y = "length in hrs",title = 'Date : {closest_state}')
 animate(anim, 200, fps = 20,  width = 1200, height = 1000, 
         renderer = gifski_renderer("ggaim2.gif"))
