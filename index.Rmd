@@ -72,7 +72,10 @@ Although time spent studying depended on what day it is, the general trend is th
 my_cal3<- my_calendar2%>%filter(summary == 'Studying')%>%mutate(date = as.Date(start))%>%group_by(date)%>%summarise(daily_study_time = sum(length_hrs))
 
 plot2<- ggplot(my_cal3, aes(x= date, y=as.numeric(daily_study_time)))+
-  geom_line()+geom_point()+ transition_reveal(date)+
+  geom_line(aes(color= 'blue'))+
+  theme(legend.position="none")+
+  geom_point()+ 
+  transition_reveal(date)+
   ylab("Time spent studying")
 
 animate(plot2, 200, fps = 20,renderer = gifski_renderer("line.gif"))
