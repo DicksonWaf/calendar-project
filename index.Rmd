@@ -112,7 +112,7 @@ animate(anim, 200, fps = 20,  width = 1200, height = 1000,
 ```
 
 
-#Insights  
+# Insights  
 From my data and visuals, I figured out that the single activity that took most of my time was sleep. This is not surprising considering I regularly sleep 8-9 hours a day. Another interesting thing was how my studying time evolved. I learnt that I don't evenly distribute my study time, and I tend to study more when exams are approaching or when projects are due. I also figured out my main source of entertainment was my phone. However the time spent on my phone was almost the same as the time I spent watching TV or videos on my laptop. The time I spent on social interactions was minimal, and was concentrated on weekends. This was mainly due to social distancing regulations that were in place because of Covid-19. I would have loved to compare how my schedule during this period differed from my schedule during the normal semester, but I don't use google calendar usually.
 
 # Reflections  
