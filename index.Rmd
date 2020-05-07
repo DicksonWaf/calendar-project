@@ -8,8 +8,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 # Motivations
 My aim in this project was to track how I spent time during the ~2 week period I recorded my activities. I split my daily activities into 5 categories: 
-1.Sleep- All the time spent sleeping
+1. Sleep- All the time spent sleeping
 2. TV/laptop - Includes all the time I spent watching TV and using my laptop for entertainment.
+
 3. Phone - includes periods when I used my phone either for social media or internet browsing.
 4. Studying - All the time I spent studying.
 5. Social Activities - Times I was involved in physical interactions/outdoor activities with friends.
@@ -18,7 +19,7 @@ My aim in this project was to track how I spent time during the ~2 week period I
 # Data Collection
 I collected data by manually inputting my daily activities on google calendar. 
 
-#Results and interpretations.
+# Results and interpretations.
 
 ```{r,include=FALSE}
 # you'll need to delete the eval=FALSE for this code chunk to execute
@@ -40,7 +41,8 @@ my_calendar <- ical_parse_df(file = "C:\\Users\\Dickson Wafula\\Downloads\\dnakh
 view(my_calendar)
 ```
 
-##Comparing time spent on each activity.
+## Comparing time spent on each activity.
+
 Started  by creating boxplots to compare median time spent on activities. Sleep had the highest median at close to 8.5 hours, followed by TV/Laptop, Studying, phone and social activities respectively. 
 Boxplots don't give the full picture in this context because I undertook some activities daily, while others only a few days.
 I therefore made barplots to compare the total time spent on each activity.
@@ -54,31 +56,31 @@ ggplot(my_calendar2, aes(x=summary, y=as.numeric(length_hrs), fill = summary)) +
     geom_boxplot()+
   theme(legend.position="none")+
   labs(x = 'Activities', y = 'length in hours')
-
+```
+```{r}
 ggplot(my_calendar2, aes(x=summary, y = as.numeric(length_hrs), fill = summary))+
   geom_bar(stat = 'identity')+
       theme(legend.position="none")+
   labs(x = "Activities", y = "Total length in hours")
 
-
-
 ```
 
 ## How the daily time I spent studying changed over time.
+
 Although time spent studying depended on what day it is, the general trend is that it increased as the days went by, probably because finals week was approaching/ end of semester projects.
 
 ```{r}
 
 my_cal3<- my_calendar2%>%filter(summary == 'Studying')%>%mutate(date = as.Date(start))%>%group_by(date)%>%summarise(daily_study_time = sum(length_hrs))
 
-plot2<- ggplot(my_cal3, aes(x= date, y=daily_study_time))+
+plot2<- ggplot(my_cal3, aes(x= date, y=as.numeric(daily_study_time)))+
   geom_line()+geom_point()+ transition_reveal(date)+
   ylab("Time spent studying")
 
 animate(plot2, 200, fps = 20,renderer = gifski_renderer("line.gif"))
 ```
 
-##How often did I socialize and what was the trend?
+## How often did I socialize and what was the trend?
 I did not spend a lot of time engaging in social activities during the ~2 week period. It's also observable that I spent more time engaging in social activities during the weekends. There is no clear trend whether the time I spent socializing went down over time.
 
 ```{r}

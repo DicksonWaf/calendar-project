@@ -3,12 +3,15 @@ Motivations
 
 My aim in this project was to track how I spent time during the ~2 week
 period I recorded my activities. I split my daily activities into 5
-categories: 1.Sleep- All the time spent sleeping 2. TV/laptop - Includes
-all the time I spent watching TV and using my laptop for entertainment.
-3. Phone - includes periods when I used my phone either for social media
-or internet browsing. 4. Studying - All the time I spent studying. 5.
-Social Activities - Times I was involved in physical
-interactions/outdoor activities with friends.
+categories: 1. Sleep- All the time spent sleeping 2. TV/laptop -
+Includes all the time I spent watching TV and using my laptop for
+entertainment.
+
+1.  Phone - includes periods when I used my phone either for social
+    media or internet browsing.
+2.  Studying - All the time I spent studying.
+3.  Social Activities - Times I was involved in physical
+    interactions/outdoor activities with friends.
 
 Data Collection
 ===============
@@ -16,16 +19,20 @@ Data Collection
 I collected data by manually inputting my daily activities on google
 calendar.
 
-\#Results and interpretations.
+Results and interpretations.
+============================
 
-\#\#Comparing time spent on each activity. Started by creating boxplots
-to compare median time spent on activities. Sleep had the highest median
-at close to 8.5 hours, followed by TV/Laptop, Studying, phone and social
-activities respectively. Boxplots don’t give the full picture in this
-context because I undertook some activities daily, while others only a
-few days. I therefore made barplots to compare the total time spent on
-each activity. I spent the most time on sleep, followed by studying,
-phone, TV/Laptop and social activities respectively.
+Comparing time spent on each activity.
+--------------------------------------
+
+Started by creating boxplots to compare median time spent on activities.
+Sleep had the highest median at close to 8.5 hours, followed by
+TV/Laptop, Studying, phone and social activities respectively. Boxplots
+don’t give the full picture in this context because I undertook some
+activities daily, while others only a few days. I therefore made
+barplots to compare the total time spent on each activity. I spent the
+most time on sleep, followed by studying, phone, TV/Laptop and social
+activities respectively.
 
     my_calendar2 <- my_calendar%>%mutate(date1= as.Date(start))%>%filter(date1>="2020-04-21", summary!="", summary!='Summer Housing Request Meeting')%>%
       select(summary, start, end, length_min, length_hrs)
@@ -42,7 +49,7 @@ phone, TV/Laptop and social activities respectively.
           theme(legend.position="none")+
       labs(x = "Activities", y = "Total length in hours")
 
-![](index_files/figure-markdown_strict/unnamed-chunk-2-2.png)
+![](index_files/figure-markdown_strict/unnamed-chunk-3-1.png)
 
 How the daily time I spent studying changed over time.
 ------------------------------------------------------
@@ -53,21 +60,21 @@ week was approaching/ end of semester projects.
 
     my_cal3<- my_calendar2%>%filter(summary == 'Studying')%>%mutate(date = as.Date(start))%>%group_by(date)%>%summarise(daily_study_time = sum(length_hrs))
 
-    plot2<- ggplot(my_cal3, aes(x= date, y=daily_study_time))+
+    plot2<- ggplot(my_cal3, aes(x= date, y=as.numeric(daily_study_time)))+
       geom_line()+geom_point()+ transition_reveal(date)+
       ylab("Time spent studying")
 
     animate(plot2, 200, fps = 20,renderer = gifski_renderer("line.gif"))
 
-    ## Don't know how to automatically pick scale for object of type difftime. Defaulting to continuous.
+![](index_files/figure-markdown_strict/unnamed-chunk-4-1.gif)
 
-![](index_files/figure-markdown_strict/unnamed-chunk-3-1.gif)
+How often did I socialize and what was the trend?
+-------------------------------------------------
 
-\#\#How often did I socialize and what was the trend? I did not spend a
-lot of time engaging in social activities during the ~2 week period.
-It’s also observable that I spent more time engaging in social
-activities during the weekends. There is no clear trend whether the time
-I spent socializing went down over time.
+I did not spend a lot of time engaging in social activities during the
+~2 week period. It’s also observable that I spent more time engaging in
+social activities during the weekends. There is no clear trend whether
+the time I spent socializing went down over time.
 
     my_cal4<- my_calendar2%>%filter(summary == 'Social Activities')%>%mutate(date = as.Date(start))%>%group_by(date)%>%summarise(daily_social_time = sum(length_hrs))
     ggplot(my_cal4, aes(x= date, y= as.numeric(daily_social_time), fill = as.factor(date)))+
@@ -75,7 +82,7 @@ I spent socializing went down over time.
         theme(legend.position="none")+
       ylab("Time spent socializing")
 
-![](index_files/figure-markdown_strict/unnamed-chunk-4-1.png)
+![](index_files/figure-markdown_strict/unnamed-chunk-5-1.png)
 
 An animation of how time spent on each activity changed as days went by.
 ------------------------------------------------------------------------
@@ -98,4 +105,4 @@ fluctuated over time.
 
     ## Don't know how to automatically pick scale for object of type difftime. Defaulting to continuous.
 
-![](index_files/figure-markdown_strict/unnamed-chunk-5-1.gif)
+![](index_files/figure-markdown_strict/unnamed-chunk-6-1.gif)
