@@ -104,7 +104,9 @@ fluctuated over time.
 
 ![](index_files/figure-markdown_strict/unnamed-chunk-6-1.gif)
 
-\#Insights  
+Insights
+========
+
 From my data and visuals, I figured out that the single activity that
 took most of my time was sleep. This is not surprising considering I
 regularly sleep 8-9 hours a day. Another interesting thing was how my
