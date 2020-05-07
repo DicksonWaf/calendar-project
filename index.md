@@ -3,15 +3,15 @@ Motivations
 
 My aim in this project was to track how I spent time during the ~2 week
 period I recorded my activities. I split my daily activities into 5
-categories: 1. Sleep- All the time spent sleeping 2. TV/laptop -
-Includes all the time I spent watching TV and using my laptop for
-entertainment.
-
-1.  Phone - includes periods when I used my phone either for social
-    media or internet browsing.
-2.  Studying - All the time I spent studying.
-3.  Social Activities - Times I was involved in physical
-    interactions/outdoor activities with friends.
+categories:  
+1. Sleep- All the time spent sleeping.  
+2. TV/laptop - Includes all the time I spent watching TV and using my
+laptop for entertainment.  
+3. Phone - includes periods when I used my phone either for social media
+or internet browsing.  
+4. Studying - All the time I spent studying.  
+5. Social Activities - Times I was involved in physical
+interactions/outdoor activities with friends.
 
 Data Collection
 ===============
@@ -22,8 +22,7 @@ calendar.
 Results and interpretations.
 ============================
 
-Comparing time spent on each activity.
---------------------------------------
+### Comparing time spent on each activity.
 
 Started by creating boxplots to compare median time spent on activities.
 Sleep had the highest median at close to 8.5 hours, followed by
@@ -36,7 +35,6 @@ activities respectively.
 
     my_calendar2 <- my_calendar%>%mutate(date1= as.Date(start))%>%filter(date1>="2020-04-21", summary!="", summary!='Summer Housing Request Meeting')%>%
       select(summary, start, end, length_min, length_hrs)
-    view(my_calendar2)
     ggplot(my_calendar2, aes(x=summary, y=as.numeric(length_hrs), fill = summary)) + 
         geom_boxplot()+
       theme(legend.position="none")+
@@ -68,8 +66,7 @@ week was approaching/ end of semester projects.
 
 ![](index_files/figure-markdown_strict/unnamed-chunk-4-1.gif)
 
-How often did I socialize and what was the trend?
--------------------------------------------------
+### How often did I socialize and what was the trend?
 
 I did not spend a lot of time engaging in social activities during the
 ~2 week period. It’s also observable that I spent more time engaging in
@@ -84,8 +81,7 @@ the time I spent socializing went down over time.
 
 ![](index_files/figure-markdown_strict/unnamed-chunk-5-1.png)
 
-An animation of how time spent on each activity changed as days went by.
-------------------------------------------------------------------------
+### An animation of how time spent on each activity changed as days went by.
 
 Just a fun visual of how time spent on the different activities
 fluctuated over time.

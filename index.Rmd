@@ -7,13 +7,12 @@ always_allow_html: yes
 knitr::opts_chunk$set(echo = TRUE)
 ```
 # Motivations
-My aim in this project was to track how I spent time during the ~2 week period I recorded my activities. I split my daily activities into 5 categories: 
-1. Sleep- All the time spent sleeping
-2. TV/laptop - Includes all the time I spent watching TV and using my laptop for entertainment.
-
-3. Phone - includes periods when I used my phone either for social media or internet browsing.
-4. Studying - All the time I spent studying.
-5. Social Activities - Times I was involved in physical interactions/outdoor activities with friends.
+My aim in this project was to track how I spent time during the ~2 week period I recorded my activities. I split my daily activities into 5 categories:  
+1. Sleep- All the time spent sleeping.  
+2. TV/laptop - Includes all the time I spent watching TV and using my laptop for entertainment.  
+3. Phone - includes periods when I used my phone either for social media or internet browsing.  
+4. Studying - All the time I spent studying.  
+5. Social Activities - Times I was involved in physical interactions/outdoor activities with friends.  
 
 
 # Data Collection
@@ -38,10 +37,9 @@ my_calendar <- ical_parse_df(file = "C:\\Users\\Dickson Wafula\\Downloads\\dnakh
     , length_min = length_sec/60
     , length_hrs = length_min/60
     , date = floor_date(start_datetime, unit = "day"))
-view(my_calendar)
 ```
 
-## Comparing time spent on each activity.
+### Comparing time spent on each activity.
 
 Started  by creating boxplots to compare median time spent on activities. Sleep had the highest median at close to 8.5 hours, followed by TV/Laptop, Studying, phone and social activities respectively. 
 Boxplots don't give the full picture in this context because I undertook some activities daily, while others only a few days.
@@ -51,12 +49,12 @@ I spent the most time on sleep, followed by studying, phone, TV/Laptop and socia
 ```{r}
 my_calendar2 <- my_calendar%>%mutate(date1= as.Date(start))%>%filter(date1>="2020-04-21", summary!="", summary!='Summer Housing Request Meeting')%>%
   select(summary, start, end, length_min, length_hrs)
-view(my_calendar2)
 ggplot(my_calendar2, aes(x=summary, y=as.numeric(length_hrs), fill = summary)) + 
     geom_boxplot()+
   theme(legend.position="none")+
   labs(x = 'Activities', y = 'length in hours')
 ```
+
 ```{r}
 ggplot(my_calendar2, aes(x=summary, y = as.numeric(length_hrs), fill = summary))+
   geom_bar(stat = 'identity')+
@@ -80,7 +78,7 @@ plot2<- ggplot(my_cal3, aes(x= date, y=as.numeric(daily_study_time)))+
 animate(plot2, 200, fps = 20,renderer = gifski_renderer("line.gif"))
 ```
 
-## How often did I socialize and what was the trend?
+### How often did I socialize and what was the trend?
 I did not spend a lot of time engaging in social activities during the ~2 week period. It's also observable that I spent more time engaging in social activities during the weekends. There is no clear trend whether the time I spent socializing went down over time.
 
 ```{r}
@@ -92,7 +90,7 @@ ggplot(my_cal4, aes(x= date, y= as.numeric(daily_social_time), fill = as.factor(
 
 ```
 
-## An animation of how time spent on each activity changed as days went by.
+### An animation of how time spent on each activity changed as days went by.
 
 Just a fun visual of how time spent on the different activities fluctuated over time. 
 
