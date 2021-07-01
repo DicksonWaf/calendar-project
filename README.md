@@ -38,3 +38,4 @@ Having trouble with Pages? Check out our [documentation](https://help.github.com
 
 
 Just a line to test my azure function
+Commit 2
